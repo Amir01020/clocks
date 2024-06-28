@@ -11,3 +11,11 @@ body{
     margin: 0 auto;
     
 }
+
+.skrol{
+    overflow: auto;
+    
+}
+.skrol::-webkit-scrollbar {
+    display: none;
+}

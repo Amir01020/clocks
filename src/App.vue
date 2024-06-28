@@ -80,7 +80,7 @@
         <div class="cont pb-[160px] pt-[160px] flex flex-col">
             <Title title="Catalog" />
             <div class="mt-[60px] flex justify-between gap-5 flex-wrap">
-                <List img="/clocks/img1.png" price="€395" name="Tube Watch S42 Date Steel With Black Case" />
+                <List v-for="(item, index) in arr" :key="index" :img="item.img" :price="item.price" :name="item.name" />
 
             </div>
             <button class="w-[122px] mt-[80px] self-end h-[60px] rounded-[8px] bg-[#1E2827] text-white">Buy now</button>
@@ -101,20 +101,13 @@
             <Title title="Sale" />
             <div class="max-w-[981px] mt-20 mb-40 mx-auto">
                 <div class="flex justify-center gap-10">
-                    <div class=" w-[60%] flex gap-5">
-                        <div class="grid grid-cols-1 gap-5 grid-rows-4 w-[25%]">
-                            <div class="flex items-center justify-center bg-black">
-                                <img src="/clocks/img1.png" class="h-full" alt="">
+                    <div class=" w-[60%] h-[614px]  flex gap-5">
+                        <div class="skrol flex flex-col gap-5  w-[25%]">
+                            <div v-for="(item, index) in arr" :key="index" class="flex items-center justify-center w-full bg-black cursor-pointer">
+                                <img :src="item.img" class="h-full" alt="">
                             </div>
-                            <div class="flex items-center justify-center bg-black">
-                                <img src="/clocks/img2.png" class="h-full" alt="">
-                            </div>
-                            <div class="flex items-center justify-center bg-black">
-                                <img src="/clocks/img3.png" class="h-full" alt="">
-                            </div>
-                            <div class="flex items-center justify-center bg-black">
-                                <img src="/clocks/img4.png" class="h-full" alt="">
-                            </div>
+                            
+                            
                         </div>
                         <div class="flex items-center justify-center w-full bg-black">
                             <img src="/clocks/img1.png" class="h-full" alt="">
@@ -154,8 +147,39 @@
             </div>
         </div>
     </main>
-    <footer>
-        <div class="cont"></div>
+    <footer class="bg-[#1E2827] pt-20 pb-8">
+        <div class="cont">
+            <div class="flex justify-between mt-[80px]">
+                <div class="">
+                    <img src="/logo1.svg" class="mb-10" alt="">
+                    <div class="mb-5">
+
+                        <a href="" class="text-[18px]  text-white">+380 (68) 443-94-26</a>
+                    </div>
+                    <a href="" class="text-[18px]  text-white">1678 S. Pioneer Road
+                        <br>Salt Lake City
+                        <br>UT 84104</a>
+                </div>
+                <div class="">
+                    <div class="mb-5"><a href="" class="text-[18px]  text-white">About Us</a></div>
+                    <div class="mb-5"> <a href="" class="text-[18px]  text-white">Catalog</a></div>
+                    <div class="mb-5"> <a href="" class="text-[18px]  text-white">Sale</a></div>
+                </div>
+                <div class="flex self-start gap-4">
+                    <a href=""><img class="max-w-[44px] " src="/1.svg" alt=""></a>
+                    <a href=""><img class="max-w-[44px] " src="/2.svg" alt=""></a>
+                    <a href=""><img class="max-w-[44px] " src="/3.svg" alt=""></a>
+                </div>
+            </div>
+            <div class="flex justify-between mt-40">
+                <a href="" class="text-[14px] opacity-55 text-white">©2022 The Watch Spot. All rights reserved.</a>
+                <div class="flex gap-5 mt40">
+                    <a href="" class="text-[14px] opacity-55 text-white">Privacy Policy</a>
+                    <a href="" class="text-[14px] opacity-55 text-white">Terms of Service</a>
+                </div>
+
+            </div>
+        </div>
     </footer>
 </template>
 
@@ -169,9 +193,85 @@ export default {
         Title,
         List,
         Text,
+
     },
     data() {
-        return {}
+        return {
+            arr: [
+                {
+                    img: '/clocks/img1.png',
+                    name: 'Greenlane Watch By Police For MenHT',
+                    price: '700',
+                    comment: 'Richly detailed with an understated design - the Police Men’s Greenlane watch features a versatile multifunction design that fits effortlessly into work and play. The steel case is adorned with a semi-transparent black dial. The timepiece exhibits a contrast through a black IP bracelet with matching crown and pushers.'
+                },
+                {
+                    img: '/clocks/img2.png',
+                    name: 'Greenlane Watch By Police For MenHT',
+                    price: '700',
+                    comment: 'Richly detailed with an understated design - the Police Men’s Greenlane watch features a versatile multifunction design that fits effortlessly into work and play. The steel case is adorned with a semi-transparent black dial. The timepiece exhibits a contrast through a black IP bracelet with matching crown and pushers.'
+                },
+                {
+                    img: '/clocks/img3.png',
+                    name: 'Greenlane Watch By Police For MenHT',
+                    price: '700',
+                    comment: 'Richly detailed with an understated design - the Police Men’s Greenlane watch features a versatile multifunction design that fits effortlessly into work and play. The steel case is adorned with a semi-transparent black dial. The timepiece exhibits a contrast through a black IP bracelet with matching crown and pushers.'
+                },
+                {
+                    img: '/clocks/img4.png',
+                    name: 'Greenlane Watch By Police For MenHT',
+                    price: '700',
+                    comment: 'Richly detailed with an understated design - the Police Men’s Greenlane watch features a versatile multifunction design that fits effortlessly into work and play. The steel case is adorned with a semi-transparent black dial. The timepiece exhibits a contrast through a black IP bracelet with matching crown and pushers.'
+                },
+                {
+                    img: '/clocks/img5.png',
+                    name: 'Greenlane Watch By Police For MenHT',
+                    price: '700',
+                    comment: 'Richly detailed with an understated design - the Police Men’s Greenlane watch features a versatile multifunction design that fits effortlessly into work and play. The steel case is adorned with a semi-transparent black dial. The timepiece exhibits a contrast through a black IP bracelet with matching crown and pushers.'
+                },
+                {
+                    img: '/clocks/img6.png',
+                    name: 'Greenlane Watch By Police For MenHT',
+                    price: '700',
+                    comment: 'Richly detailed with an understated design - the Police Men’s Greenlane watch features a versatile multifunction design that fits effortlessly into work and play. The steel case is adorned with a semi-transparent black dial. The timepiece exhibits a contrast through a black IP bracelet with matching crown and pushers.'
+                },
+                {
+                    img: '/clocks/img7.png',
+                    name: 'Greenlane Watch By Police For MenHT',
+                    price: '700',
+                    comment: 'Richly detailed with an understated design - the Police Men’s Greenlane watch features a versatile multifunction design that fits effortlessly into work and play. The steel case is adorned with a semi-transparent black dial. The timepiece exhibits a contrast through a black IP bracelet with matching crown and pushers.'
+                },
+                {
+                    img: '/clocks/img8.png',
+                    name: 'Greenlane Watch By Police For MenHT',
+                    price: '700',
+                    comment: 'Richly detailed with an understated design - the Police Men’s Greenlane watch features a versatile multifunction design that fits effortlessly into work and play. The steel case is adorned with a semi-transparent black dial. The timepiece exhibits a contrast through a black IP bracelet with matching crown and pushers.'
+                },
+                {
+                    img: '/clocks/img9.png',
+                    name: 'Greenlane Watch By Police For MenHT',
+                    price: '700',
+                    comment: 'Richly detailed with an understated design - the Police Men’s Greenlane watch features a versatile multifunction design that fits effortlessly into work and play. The steel case is adorned with a semi-transparent black dial. The timepiece exhibits a contrast through a black IP bracelet with matching crown and pushers.'
+                },
+                {
+                    img: '/clocks/img10.png',
+                    name: 'Greenlane Watch By Police For MenHT',
+                    price: '700',
+                    comment: 'Richly detailed with an understated design - the Police Men’s Greenlane watch features a versatile multifunction design that fits effortlessly into work and play. The steel case is adorned with a semi-transparent black dial. The timepiece exhibits a contrast through a black IP bracelet with matching crown and pushers.'
+                },
+                {
+                    img: '/clocks/img11.png',
+                    name: 'Greenlane Watch By Police For MenHT',
+                    price: '700',
+                    comment: 'Richly detailed with an understated design - the Police Men’s Greenlane watch features a versatile multifunction design that fits effortlessly into work and play. The steel case is adorned with a semi-transparent black dial. The timepiece exhibits a contrast through a black IP bracelet with matching crown and pushers.'
+                },
+                {
+                    img: '/clocks/img12.png',
+                    name: 'Greenlane Watch By Police For MenHT',
+                    price: '700',
+                    comment: 'Richly detailed with an understated design - the Police Men’s Greenlane watch features a versatile multifunction design that fits effortlessly into work and play. The steel case is adorned with a semi-transparent black dial. The timepiece exhibits a contrast through a black IP bracelet with matching crown and pushers.'
+                }
+            ],
+        }
     },
     methods: {},
 }
