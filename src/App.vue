@@ -14,6 +14,7 @@
             </button>
         </nav>
     </header>
+
     <main>
         <div class=" bg-[#141414]">
             <div class="flex justify-between cont">
@@ -28,23 +29,23 @@
             <div class="cont flex justify-between items-end gap-[50px] pt-[45px] pb-[80px]">
                 <div class="">
                     <div class="w-full bg-[#1E2827] py-[11px] px-[44px] mb-5">
-                        <img src="/time.png" alt="">
+                        <img :src="arr[imgItem].img" alt="">
                     </div>
                     <div class="flex items-center justify-between">
                         <div class="flex gap-3">
-                            <div
+                            <div @click="swipe"
                                 class="w-10 cursor-pointer hover:opacity-[70%] h-10 border border-solid rotate-180 border-white flex justify-center items-center rounded-[8px]">
                                 <img src="/arrov.svg" alt="">
                             </div>
-                            <div
+                            <div @click="unSwipe"
                                 class="w-10 cursor-pointer hover:opacity-[70%] h-10 border border-solid border-white flex justify-center items-center rounded-[8px]">
                                 <img src="/arrov.svg" alt="">
                             </div>
                         </div>
                         <div class="flex gap-[6px] items-center">
-                            <p class="text-white text-[14px]">1</p>
+                            <p class="text-white text-[14px]">{{ imgItem + 1 }}</p>
                             <div class="w-10 h-[1px] bg-white"></div>
-                            <p class="text-white text-[14px]">9</p>
+                            <p class="text-white text-[14px]">{{ arr.length }}</p>
                         </div>
                     </div>
                 </div>
@@ -80,10 +81,11 @@
         <div class="cont pb-[160px] pt-[160px] flex flex-col">
             <Title title="Catalog" />
             <div class="mt-[60px] flex justify-between gap-5 flex-wrap">
-                <List v-for="(item, index) in arr" :key="index" :img="item.img" :price="item.price" :name="item.name" />
+                <List v-for="(item, index) in arr" :key="index" @click="modalClick(clockObj, index, arr)" :img="item.img"
+                    :price="item.price" :name="item.name" />
 
             </div>
-            <button class="w-[122px] mt-[80px] self-end h-[60px] rounded-[8px] bg-[#1E2827] text-white">Buy now</button>
+       
         </div>
         <div class="cont">
             <Title title="Green And Bronze—The Match Made In Heaven" />
@@ -103,14 +105,16 @@
                 <div class="flex justify-center gap-10">
                     <div class=" w-[60%] h-[614px]  flex gap-5">
                         <div class="skrol flex flex-col gap-5  w-[25%]">
-                            <div v-for="(item, index) in arr" :key="index" class="flex items-center justify-center w-full bg-black cursor-pointer">
+                            <div v-for="(item, index) in arr" :key="index" @click="swipImg(item.img)"
+                                class="flex items-center justify-center w-full bg-black cursor-pointer">
                                 <img :src="item.img" class="h-full" alt="">
                             </div>
-                            
-                            
+
+
                         </div>
                         <div class="flex items-center justify-center w-full bg-black">
-                            <img src="/clocks/img1.png" class="h-full" alt="">
+                            
+                            <img :src="imageSwip" class="w-full" alt="">
                         </div>
                     </div>
                     <div class="">
@@ -181,18 +185,27 @@
             </div>
         </div>
     </footer>
+
+    <ModalList :func="modalClick" :price="clockObj.price" :image="clockObj.img" :text="clockObj.text"
+        v-if="modal == true" />
 </template>
 
 <script>
 import List from './components/List.vue'
 import Text from './components/Text.vue'
 import Title from './components/Title.vue'
+import ModalList from './components/ModalList.vue'
+
+
+
 
 export default {
     components: {
         Title,
         List,
         Text,
+        ModalList,
+
 
     },
     data() {
@@ -271,8 +284,41 @@ export default {
                     comment: 'Richly detailed with an understated design - the Police Men’s Greenlane watch features a versatile multifunction design that fits effortlessly into work and play. The steel case is adorned with a semi-transparent black dial. The timepiece exhibits a contrast through a black IP bracelet with matching crown and pushers.'
                 }
             ],
+            imgItem: 0,
+            modal: false,
+            clockObj: {
+                img: "",
+                text: "",
+                price: ""
+            }, imageSwip:'/clocks/img1.png'
         }
     },
-    methods: {},
+    methods: {
+        swipe() {
+            if (this.imgItem == 0) {
+                this.imgItem = this.arr.length - 1
+                return
+            }
+            this.imgItem -= 1
+        },
+        unSwipe() {
+            if (this.imgItem == this.arr.length - 1) {
+                this.imgItem = 0
+                return
+            }
+            this.imgItem += 1
+        },
+        modalClick(obj, index, arr) {
+            this.modal = !this.modal;
+            if (this.modal) {
+                obj.text = arr[index].name;
+                obj.img = arr[index].img;
+                obj.price = arr[index].price;
+            }
+        },
+        swipImg(img){
+            this.imageSwip = img
+        }
+    },
 }
 </script>
